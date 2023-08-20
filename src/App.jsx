@@ -1,16 +1,14 @@
-import { useState } from "react";
+import { useRecoilState, useRecoilValue } from "recoil";
 
+import textState from "./recoil/atom/textAtom";
+import characterCountState from "./recoil/selector/textCounterSelector";
 import "./App.css";
 
 function App() {
-  const [text, setText] = useState("abc");
+  const [text, setText] = useRecoilState(textState);
+  const count = useRecoilValue(characterCountState);
 
   console.log(text);
-
-  const characterCount = (text) => {
-    const count = text.length;
-    return count;
-  };
 
   return (
     <>
@@ -24,7 +22,7 @@ function App() {
           }}
         />
         <div>echo: {text} </div>
-        <div>Character Count : {characterCount(text)}</div>
+        <div>Character Count : {count}</div>
       </div>
     </>
   );
