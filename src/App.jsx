@@ -1,14 +1,31 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+
 import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [text, setText] = useState("abc");
+
+  console.log(text);
+
+  const characterCount = (text) => {
+    const count = text.length;
+    return count;
+  };
 
   return (
     <>
       <h2>Recoil Demo</h2>
+      <div>
+        <input
+          type="text"
+          value={text}
+          onChange={(e) => {
+            setText(e.target.value);
+          }}
+        />
+        <div>echo: {text} </div>
+        <div>Character Count : {characterCount(text)}</div>
+      </div>
     </>
   );
 }
